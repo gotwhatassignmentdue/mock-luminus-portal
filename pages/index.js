@@ -9,57 +9,59 @@ export default function Home() {
   // const [link, setLink] = useState({});
   const data = [
     {
-      taskID: "f3dfcf4c8391",
-      module: "CS2102",
-      taskName: "Submission: Web Application",
-      createdDate: "01-01-2020",
-      startDate: "07-01-2020",
-      endDate: "01-12-2020",
-      completed: false
-  },
-  {
       taskID: "96e3f6a743df",
       module: "CS2101",
       taskName: "Submission:User Guide",
-      createdDate: "01-01-2020",
-      startDate: "07-01-2020",
-      endDate: "01-10-2020",
+      createdDate: "01-01-2021",
+      startDate: "07-01-2021",
+      endDate: "01-10-2021",
       completed: false
   },
+  {
+    taskID: "11398fc370c4",
+    module: "GEQ1000",
+    taskName: "Quiz 1",
+    createdDate: "01-01-2021",
+    startDate: "07-01-2021",
+    endDate: "01-11-2021",
+    completed: false
+},
+    {
+      taskID: "f3dfcf4c8391",
+      module: "CS2102",
+      taskName: "Submission: Web Application",
+      createdDate: "01-01-2021",
+      startDate: "07-01-2021",
+      endDate: "01-12-2021",
+      completed: false
+  },
+  {
+    taskID: "e6292bf1f178",
+    module: "GEQ1000",
+    taskName: "Quiz 2",
+    createdDate: "01-01-2021",
+    startDate: "010-01-2021",
+    endDate: "01-17-2021",
+    completed: false
+},
   {
       taskID: "762c760172f8",
       module: "CS2103T",
       taskName: "Presentation",
-      createdDate: "01-01-2020",
-      startDate: "07-01-2020",
-      endDate: "01-18-2020",
+      createdDate: "01-01-2021",
+      startDate: "07-01-2021",
+      endDate: "01-18-2021",
       completed: false
   },
-  {
-      taskID: "11398fc370c4",
-      module: "GEQ1000",
-      taskName: "Quiz 1",
-      createdDate: "01-01-2020",
-      startDate: "07-01-2020",
-      endDate: "01-11-2020",
-      completed: false
-  },
-  {
-      taskID: "e6292bf1f178",
-      module: "GEQ1000",
-      taskName: "Quiz 2",
-      createdDate: "01-01-2020",
-      startDate: "010-01-2020",
-      endDate: "01-17-2020",
-      completed: false
-  },
+
+
   {
       taskID: "99ec80cd0618",
       module: "GEQ1000",
       taskName: "Quiz 3",
-      createdDate: "01-01-2020",
-      startDate: "17-01-2020",
-      endDate: "01-24-2020",
+      createdDate: "01-01-2021",
+      startDate: "17-01-2021",
+      endDate: "01-24-2021",
       completed: false
   }
   ];
@@ -95,10 +97,7 @@ export default function Home() {
       dataSource={data}
       renderItem={item => (
         <List.Item>
-          {/* {console.log(new Date(item.endDate).getTime())}
-          {console.log(new Date().getTime())} */}
-          {console.log((new Date(item.endDate).getTime()) - (new Date().getTime())) /1000/60/60/24 }
-          <Typography.Text mark>Due in {(new Date(item.endDate).getTime()) - (new Date().getTime()) } days</Typography.Text> {item.module + " " + item.taskName}
+          <Typography.Text mark>Due in {Math.trunc((new Date(item.endDate).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24)} days</Typography.Text> {item.module + " " + item.taskName}
         </List.Item>
       )}
     />
