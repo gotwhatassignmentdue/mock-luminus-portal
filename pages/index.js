@@ -1,0 +1,135 @@
+import Head from 'next/head'
+import 'antd/dist/antd.css';
+import styles from '../styles/Home.module.css'
+import React, { useState } from 'react'
+import { Row, Col, List, Typography, Divider } from 'antd';
+
+
+export default function Home() {
+  // const [link, setLink] = useState({});
+  const data = [
+    {
+      taskID: "f3dfcf4c8391",
+      module: "CS2102",
+      taskName: "Submission: Web Application",
+      createdDate: "01-01-2020",
+      startDate: "07-01-2020",
+      endDate: "01-12-2020",
+      completed: false
+  },
+  {
+      taskID: "96e3f6a743df",
+      module: "CS2101",
+      taskName: "Submission:User Guide",
+      createdDate: "01-01-2020",
+      startDate: "07-01-2020",
+      endDate: "01-10-2020",
+      completed: false
+  },
+  {
+      taskID: "762c760172f8",
+      module: "CS2103T",
+      taskName: "Presentation",
+      createdDate: "01-01-2020",
+      startDate: "07-01-2020",
+      endDate: "01-18-2020",
+      completed: false
+  },
+  {
+      taskID: "11398fc370c4",
+      module: "GEQ1000",
+      taskName: "Quiz 1",
+      createdDate: "01-01-2020",
+      startDate: "07-01-2020",
+      endDate: "01-11-2020",
+      completed: false
+  },
+  {
+      taskID: "e6292bf1f178",
+      module: "GEQ1000",
+      taskName: "Quiz 2",
+      createdDate: "01-01-2020",
+      startDate: "010-01-2020",
+      endDate: "01-17-2020",
+      completed: false
+  },
+  {
+      taskID: "99ec80cd0618",
+      module: "GEQ1000",
+      taskName: "Quiz 3",
+      createdDate: "01-01-2020",
+      startDate: "17-01-2020",
+      endDate: "01-24-2020",
+      completed: false
+  }
+  ];
+  const getLink = () => {
+    let url = "http://localhost:3001/initiateTelebot"
+    fetch(url)
+    .then(res => {
+        console.log(res)
+        window.open(res, '_blank');
+        //checkwhether get the link
+        // setLink(res.link);
+    });
+    //window.open("https://www.google.com", '_blank');
+  }
+
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>
+          Welcome to LumiNUS!
+        </h1>
+<Row> 
+  <Col>
+
+   <List
+      header={<div>What's Due Soon?</div>}
+      bordered
+      dataSource={data}
+      renderItem={item => (
+        <List.Item>
+          {/* {console.log(new Date(item.endDate).getTime())}
+          {console.log(new Date().getTime())} */}
+          {console.log((new Date(item.endDate).getTime()) - (new Date().getTime())) /1000/60/60/24 }
+          <Typography.Text mark>Due in {(new Date(item.endDate).getTime()) - (new Date().getTime()) } days</Typography.Text> {item.module + " " + item.taskName}
+        </List.Item>
+      )}
+    />
+  </Col> 
+  <Col>
+  <div className={styles.grid} onClick={getLink}>
+          <a
+            className={styles.card}
+          >
+            <h3>Integrate with telegram &rarr; </h3>
+            <p>
+              receive notifications when dues are getting closer
+            </p>
+          </a>
+        </div>
+  </Col>
+</Row>
+      
+
+      </main>
+
+      {/* <footer className={styles.footer}>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+        </a>
+      </footer> */}
+    </div>
+  )
+}
